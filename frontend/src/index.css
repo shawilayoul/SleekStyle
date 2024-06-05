@@ -1,6 +1,16 @@
-
+:root{
+    --main-white: #f0f0f0;
+    --header-backGround:#023047;
+    --main-red: #be3144;
+    --main-blue: #45567d;
+    --main-gray: #303841;
+}
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+h1,h2,h3,h4{
+    margin: 0;
+    padding: 0;
 }

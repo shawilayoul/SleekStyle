@@ -1,0 +1,63 @@
+footer {
+  display: flex;
+  padding: 1rem;
+  background-color: var(--header-backGround);
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    h3 {
+      color: var(--main-white);
+    }
+    p {
+      color: var(--main-white);
+    }
+    .social-icons {
+      display: flex;
+      gap: 2rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      .facebook {
+        color: white;
+      }
+      .insta {
+        color: orangered;
+      }
+      .youtube {
+        color: red;
+      }
+      .twitter {
+        color:white;
+      }
+    }
+  }
+  .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    h3 {
+      color: var(--main-white);
+    }
+    p {
+      color: var(--main-white);
+    }
+    .vias-icon {
+      display: flex;
+      color: red;
+      gap: 2rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+  }
+  .right {
+    flex: 1;
+    h3 {
+      color: var(--main-white);
+    }
+    p {
+      color: var(--main-white);
+    }
+  }
+}
