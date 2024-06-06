@@ -1,0 +1,118 @@
+.home-container {
+  width: 95%;
+  margin: 0 auto;
+  ///homs slide sccs stle
+  .home-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--home-background);
+    height: 70vh;
+    border-radius: 8px;
+    .slider {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 1rem;
+      .middle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        h2 {
+          font-size: 40px;
+          margin-bottom: 1rem;
+        }
+        .shop-btn{
+          display: flex;
+          gap: 10rem;
+          button{
+            cursor: pointer;
+            width: 8rem;
+            color: var(--main-white);
+            background-color: var(--header-backGround);
+            padding: 0.5rem;
+          }
+        }
+     
+      }
+    }
+  }
+  //features section sccs style
+  .features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--home-background);
+    margin-top: 1rem;
+    padding: 2rem 0;
+    border-radius: 8px;
+    .features-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .icon {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+      .icon-red{
+        color: var(--main-red);
+      }
+      p {
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+  }
+  //product section scss style
+  .products{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    h3{
+      font-size: 30px;
+    }
+    .filter{
+      button{
+        cursor: pointer;
+        padding: 0.5rem;
+        width: 8rem;
+        margin-left: 0.5rem;
+        color: var(--main-white);
+        background-color: var(--header-backGround);
+        border-radius: 6px;
+      }
+    }
+    .items{
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: auto auto auto auto auto;
+      .item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.5rem;
+        background-color: var(--home-background);
+        border-radius: 8px;
+        button{
+          cursor: pointer;
+          padding: 0.5rem 1rem;
+          color: var(--main-white);
+          background-color: var(--header-backGround);
+          border-radius: 6px;
+        }
+        img{
+          width: 200px;
+          height: 300px;
+        }
+        h4{
+          margin-top: 8px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

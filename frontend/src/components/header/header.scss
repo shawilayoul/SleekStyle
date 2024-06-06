@@ -1,16 +1,21 @@
 header {
   width: 100%;
-  height: 60px;
-  background-color: var(--header-backGround);
-  padding: 0 1rem;
+  height: 65px;
+  margin-bottom: 0.8rem;
   nav {
-    width: 90%;
+    width: 100%;
+    height: 65px;
     margin: 0 auto;
     display: flex;
     align-items: center;
+    padding: 0 2.5rem;
     justify-content: space-between;
+    position: fixed;
+    background-color: var(--header-backGround);
+    z-index: 2;
     .logo {
       h2 {
+        font-size: 30px;
         .link {
           color: var(--main-white);
           text-decoration: none;
@@ -20,7 +25,7 @@ header {
     ul {
       display: flex;
       align-items: center;
-      gap: 3rem;
+      gap: 4rem;
       list-style: none;
       li {
         .link {
@@ -32,8 +37,43 @@ header {
     }
     .right {
       display: flex;
-      gap: 3rem;
+      align-items: center;
+      justify-content: space-around;
+      margin-right: 5.5rem;
+      gap: 4rem;
       color: var(--main-white);
+      .search{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--main-white);
+        padding: 0 0.5rem;
+        border-radius: 6px;
+        .search-icon{
+          color: var(--header-backGround);
+        }
+        input{
+          border: none;
+          padding: 0.5rem;
+        }
+        
+      }
+      .cart{
+        position: relative;
+        .cart-item{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          bottom: 17px;
+          left: 8px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: var(--main-red);
+          color: var(--main-white);
+        }
+      }
     }
   }
 }

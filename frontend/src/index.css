@@ -1,15 +1,19 @@
-:root{
-    --main-white: #f0f0f0;
-    --header-backGround:#023047;
-    --main-red: #be3144;
-    --main-blue: #45567d;
-    --main-gray: #303841;
-}
 body{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    background-color: var(--main-white);
 }
+:root{
+    --main-white: #ffffff;
+    --header-backGround:#023047;
+    --home-background:#dee2e6;
+    --main-red: #ef0827;
+    --main-black:#000;
+    --main-blue: #45567d;
+    --main-gray: #303841;
+}
+
 h1,h2,h3,h4{
     margin: 0;
     padding: 0;
