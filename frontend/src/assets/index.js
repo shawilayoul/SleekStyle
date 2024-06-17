@@ -7,6 +7,7 @@ import suit5 from "./images/suit5.png";
 /** girls cloth** */
 import girl1 from "./images/girl1.jpg";
 import girl2 from "./images/girl2.png";
+import girl3 from "./images/girl3.png";
 /*** bboy t-shrit***/
 import tshirt1 from "./images/t-shirt1.png";
 import tshirt2 from "./images/t-shirt2.png";
@@ -37,6 +38,7 @@ const images = {
   bolg1,
   bolg2,
   bolg3,
-  bolg4
+  bolg4,
+  girl3
 };
 export default images;

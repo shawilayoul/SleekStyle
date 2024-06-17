@@ -7,10 +7,10 @@ body{
 :root{
     --main-white: #ffffff;
     --header-backGround:#023047;
+    --main-blue:#023047;
     --home-background:#dee2e6;
     --main-red: #ef0827;
     --main-black:#000;
-    --main-blue: #45567d;
     --main-gray: #303841;
 }
 

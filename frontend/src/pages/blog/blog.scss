@@ -1,0 +1,34 @@
+.blog-container {
+  width: 95%;
+  margin: 0 auto;
+  .blog-top {
+    width: 100%;
+    .blog-img {
+      position: relative;
+      img {
+        width: 100%;
+        height: 450px;
+        opacity: 0.6;
+        object-fit: cover;
+      }
+    }
+    h2 {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      font-size: 35px;
+    }
+  }
+  .blog-bottom {
+    width: 50%;
+    .blog-left {
+      .blog-item {
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .blog-right {
+    }
+  }
+}
