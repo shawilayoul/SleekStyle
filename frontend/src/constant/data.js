@@ -116,7 +116,7 @@ export const shopSlideDAta = [
     title: "The hidden gems in fashion trends",
     description:
       "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    image: images.girl3,
+    image: images.tshirt1,
   },
   {
     id: 2,
@@ -137,7 +137,7 @@ export const shopSlideDAta = [
     title: "The hidden gems in fashion trends",
     description:
       "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    image: images.tshirt1,
+    image: images.tshirt2,
   },
 ];
 /*** blog post data ***/
