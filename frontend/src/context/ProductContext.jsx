@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { homeProductData, NewProduct } from "../constant/data";
 import toast from "react-hot-toast";
 export const ProductsContext = createContext({
@@ -7,7 +7,6 @@ export const ProductsContext = createContext({
   addOneToCart: () => {},
   removerOneFromCart: () => {},
   deleteFromCart: () => {},
-  updateCart: () => {},
   getTotalCost: () => {},
 });
 
@@ -20,7 +19,7 @@ const ProductContextProvider = ({ children }) => {
   const filterProducts = filterValue
     ? homeProductData.filter(
         (product) =>
-          product.gender === filterValue || product.all === filterValue
+          product.gender === filterValue || product.all === filterValue ||product.price === filterValue.toString()
       )
     : homeProductData;
   //filtering  new products by gender
@@ -41,6 +40,14 @@ const ProductContextProvider = ({ children }) => {
     }
     return qauntity;
   };
+
+  // get product from the local storage
+  useEffect(() => {
+    const saveProducts = JSON.parse(localStorage.getItem("products"));
+    if (saveProducts) {
+      setProductsInCart(saveProducts);
+    }
+  }, []);
   // add product to cart
   const addOneToCart = (id, name, price, image) => {
     const qauntity = getQauntity(id);
@@ -69,18 +76,46 @@ const ProductContextProvider = ({ children }) => {
         )
       );
     }
+    saveToLocalStorage();
     toast.success("Product has been added Successfully to the cart");
   };
-
+  // delete one from cart
+  const removerOneFromCart = (id) => {
+    const qauntity = getQauntity(id);
+    if (qauntity === 1) {
+      deleteFromCart(id);
+    } else {
+      setProductsInCart(
+        productsInCart.map((product) =>
+          product.id === id
+            ? {
+                ...product,
+                qauntity: product.qauntity - 1,
+              }
+            : product
+        )
+      );
+    }
+  };
+  // delete from cart
+  const deleteFromCart = (id) => {
+    setProductsInCart(productsInCart.filter((product) => product.id !== id));
+    toast.success("the item has been deleted from the cart successfully");
+    saveToLocalStorage()
+  };
   //get total price
   const getTotalCost = () => {
     let total = 0;
-  const cost = productsInCart.reduce(
+    const cost = productsInCart.reduce(
       (sum, acc) => sum + acc.price * acc.qauntity,
       0
     );
     total += cost;
     return total;
+  };
+  // save to local storage
+  const saveToLocalStorage = () => {
+    localStorage.setItem("products", JSON.stringify(productsInCart));
   };
 
   const contextValue = {
@@ -92,6 +127,8 @@ const ProductContextProvider = ({ children }) => {
     addOneToCart,
     productsInCart,
     getTotalCost,
+    deleteFromCart,
+    removerOneFromCart
   };
   return (
     <ProductsContext.Provider value={contextValue}>

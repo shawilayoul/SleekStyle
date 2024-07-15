@@ -5,7 +5,14 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
 const Header = () => {
   const [cartModel, setCartModel] = useState(false);
-  const { productsInCart,getTotalCost } = useContext(ProductsContext);
+  const { productsInCart, getTotalCost, deleteFromCart ,addOneToCart, removerOneFromCart} =
+    useContext(ProductsContext);
+
+  // get the total qauntity
+  const totatlQauntity = productsInCart.reduce(
+    (sum, acc) => sum + acc.qauntity,
+    0
+  );
 
   const menu = [
     {
@@ -58,34 +65,31 @@ const Header = () => {
           </div>
           <div className="cart">
             <div className="cart-item">
-              <p>2</p>
+              <p>{totatlQauntity}</p>
             </div>
             <FaShoppingCart onClick={() => setCartModel(!cartModel)} />
             {cartModel && (
               <div className="cartModel">
-                <div className="items">
+                { totatlQauntity > 0 ?(  <div className="items">
                   {productsInCart.map(
                     ({ id, name, price, image, qauntity }) => {
                       return (
-                        <>
-                          {" "}
-                          {qauntity > 0 ? (
-                            <div className="item" key={id}>
-                              <img src={image} alt="" />
-                              <h4>{name}</h4>
-                              <p>$ {price}</p>
-                              <p>qauntity {qauntity}</p>
-                              <button>+</button>
-                              <button>-</button>
-                            </div>
-                          ) : (
-                            <p>the cart is Empty add items to it</p>
-                          )}
-                        </>
+                        <div className="item" key={id}>
+                          <img src={image} alt="" />
+                          <h4>{name}</h4>
+                          <p>$ {price}</p>
+                          <p>qauntity {qauntity}</p>
+                          <button onClick={()=>addOneToCart(id)}>+</button>
+                          <button onClick={()=>removerOneFromCart(id)}>-</button>
+                          <button onClick={() => deleteFromCart(id)}>
+                            Delete
+                          </button>
+                        </div>
                       );
                     }
                   )}
-                </div>
+                </div>):(<p style={{color:"red"}}>There is No items in the cart,add some</p>)}
+              
                 <p>Total:{getTotalCost()}</p>
                 <button>Buy Now</button>
               </div>

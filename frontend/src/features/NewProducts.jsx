@@ -3,7 +3,7 @@ import { ProductsContext } from "../context/ProductContext";
 import "./products.scss";
 
 const NewProducts = () => {
-  const {filterNewProducts, setFilterNewProductValue } = useContext(ProductsContext);
+  const {filterNewProducts, setFilterNewProductValue ,addOneToCart} = useContext(ProductsContext);
   const handelChange = (e) => {
     const targetEl = e.target;
      if(targetEl){
@@ -34,7 +34,7 @@ const NewProducts = () => {
               <img src={image} alt="" />
               <h4>{name}</h4>
               <p>$ {price}</p>
-              <button>Add to cart</button>
+              <button  onClick={()=>addOneToCart(id,name,price,image)}>Add to cart</button>
             </div>
           );
         })}

@@ -11,8 +11,13 @@ import { shopSlideDAta } from "../../constant/data";
 import ProductFeatures from "../../features/ProductFeatures";
 import Products from "../../features/Prodcuts.jsx";
 import NewProducts from "../../features/NewProducts.jsx";
+import { useContext} from "react";
+import { ProductsContext } from "../../context/ProductContext.jsx";
 
 const Shop = () => {
+
+  const { setFilterValue ,filterValue } = useContext(ProductsContext);
+ console.log(Number(filterValue))
   return (
     <div className="shop-container">
       <section className="shop-top">
@@ -65,8 +70,8 @@ const Shop = () => {
             </div>
           </div>
           <div className="price-filter">
-            <h3> Filter by Price</h3>
-            <input type="range" />
+            <h3> Filter by Price {filterValue}</h3>
+            <input type="range" step={10} value={filterValue} onChange={(e)=>setFilterValue(e.target.value)}/>
           </div>
         </div>
         <div className="shop-right">
@@ -79,7 +84,7 @@ const Shop = () => {
               loop={true}
               pagination={{ clickable: true }}
             >
-              {shopSlideDAta.map(({ id, title,description, image }) => {
+              {shopSlideDAta.map(({ id, title, description, image }) => {
                 return (
                   <SwiperSlide key={id}>
                     <div className="slider" key={id}>
@@ -91,13 +96,18 @@ const Shop = () => {
                         />
                       </div>
                       <div className="right">
-                        <h2>
-                       {title}
-                        </h2>
+                        <h2>{title}</h2>
                         <p>{description}</p>
                         <div className="shop-btn">
                           <button> Shop Now</button>
                         </div>
+                      </div>
+                      <div className="left">
+                        <img
+                          style={{ width: "350px", height: "300px" }}
+                          src={image}
+                          alt=""
+                        />
                       </div>
                     </div>
                   </SwiperSlide>
@@ -111,7 +121,7 @@ const Shop = () => {
       </section>
       <ProductFeatures />
       <h3 className="title">New Arrival</h3>
-      <NewProducts/>
+      <NewProducts />
       <ChiffreSection />
     </div>
   );

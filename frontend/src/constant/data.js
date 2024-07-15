@@ -50,7 +50,7 @@ export const homeProductData = [
     id: 1,
     image: images.kid1,
     name: "product kids",
-    price: 12,
+    price: "10",
     gender:"kids",
     all:"all"
   },
@@ -58,7 +58,7 @@ export const homeProductData = [
     id: 2,
     image: images.girl8,
     name: "product women",
-    price: 22,
+    price: "20",
      gender:"women",
       all:"all"
   },
@@ -66,7 +66,7 @@ export const homeProductData = [
     id: 3,
     image: images.boy10,
     name: "product men",
-    price: 15,
+    price:"30",
      gender:"men",
       all:"all"
   },
@@ -74,7 +74,7 @@ export const homeProductData = [
     id: 4,
     image: images.boy11,
     name: "product men",
-    price: 12,
+    price: "90",
      gender:"men",
       all:"all"
   },
@@ -82,7 +82,7 @@ export const homeProductData = [
     id: 5,
     image: images.girl7,
     name: "product women",
-    price: 12,
+    price: "70",
      gender:"women",
       all:"all"
   },
@@ -90,7 +90,7 @@ export const homeProductData = [
     id: 6,
     image: images.kid2,
     name: "product kid",
-    price: 32,
+    price: "40",
      gender:"kids",
       all:"all"
   },
@@ -98,7 +98,7 @@ export const homeProductData = [
     id: 7,
     image: images.kid3,
     name: "product kids",
-    price: 23,
+    price: "80",
      gender:"kid",
       all:"all"
   },
@@ -106,7 +106,7 @@ export const homeProductData = [
     id: 8,
     image: images.boy15,
     name: "product men",
-    price: 12,
+    price: "100",
      gender:"men",
       all:"all"
   },
@@ -114,7 +114,7 @@ export const homeProductData = [
     id: 9,
     image: images.girl3,
     name: "product women",
-    price: 23,
+    price: "200",
      gender:"women",
       all:"all"
   },
@@ -122,7 +122,7 @@ export const homeProductData = [
     id: 10,
     image: images.kid5,
     name: "product kids",
-    price: 23,
+    price: "70",
      gender:"kids",
       all:"all"
   },
