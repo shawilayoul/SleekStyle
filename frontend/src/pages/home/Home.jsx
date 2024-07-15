@@ -9,6 +9,7 @@ import "./home.scss";
 import ChiffreSection from "../../features/ChiffreSection";
 import ProductFeatures from "../../features/ProductFeatures";
 import Products from "../../features/Prodcuts";
+import NewProducts from "../../features/NewProducts";
 const Home = () => {
   return (
     <div className="home-container">
@@ -50,10 +51,8 @@ const Home = () => {
       <ProductFeatures />
       <h3 className="title">Our Products</h3>
       <Products />
-
       <h3 className="title">New Arrivals </h3>
-      <Products />
-
+      <NewProducts/>
       <ChiffreSection />
     </div>
   );

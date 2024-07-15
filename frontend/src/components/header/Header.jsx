@@ -1,7 +1,12 @@
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { ProductsContext } from "../../context/ProductContext";
 const Header = () => {
+  const [cartModel, setCartModel] = useState(false);
+  const { productsInCart,getTotalCost } = useContext(ProductsContext);
+
   const menu = [
     {
       id: 1,
@@ -55,7 +60,36 @@ const Header = () => {
             <div className="cart-item">
               <p>2</p>
             </div>
-            <FaShoppingCart />
+            <FaShoppingCart onClick={() => setCartModel(!cartModel)} />
+            {cartModel && (
+              <div className="cartModel">
+                <div className="items">
+                  {productsInCart.map(
+                    ({ id, name, price, image, qauntity }) => {
+                      return (
+                        <>
+                          {" "}
+                          {qauntity > 0 ? (
+                            <div className="item" key={id}>
+                              <img src={image} alt="" />
+                              <h4>{name}</h4>
+                              <p>$ {price}</p>
+                              <p>qauntity {qauntity}</p>
+                              <button>+</button>
+                              <button>-</button>
+                            </div>
+                          ) : (
+                            <p>the cart is Empty add items to it</p>
+                          )}
+                        </>
+                      );
+                    }
+                  )}
+                </div>
+                <p>Total:{getTotalCost()}</p>
+                <button>Buy Now</button>
+              </div>
+            )}
           </div>
         </div>
       </nav>

@@ -10,6 +10,7 @@ import "swiper/css";
 import { shopSlideDAta } from "../../constant/data";
 import ProductFeatures from "../../features/ProductFeatures";
 import Products from "../../features/Prodcuts.jsx";
+import NewProducts from "../../features/NewProducts.jsx";
 
 const Shop = () => {
   return (
@@ -110,7 +111,7 @@ const Shop = () => {
       </section>
       <ProductFeatures />
       <h3 className="title">New Arrival</h3>
-      <Products />
+      <NewProducts/>
       <ChiffreSection />
     </div>
   );

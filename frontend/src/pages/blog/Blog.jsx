@@ -1,6 +1,6 @@
 import "./blog.scss";
 import { blogPost } from "../../constant/data";
-import images from "../../assets";
+import { images } from "../../assets/images";
 const Blog = () => {
   return (
     <div className="blog-container">

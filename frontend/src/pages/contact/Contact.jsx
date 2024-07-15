@@ -1,4 +1,4 @@
-import images from "../../assets";
+import { images } from "../../assets/images";
 import "./contact.scss";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";

@@ -1,4 +1,4 @@
-import images from "../assets";
+import { images } from "../assets/images";
 /****home slide data******/
 
 export const homeSlideData = [
@@ -48,63 +48,166 @@ export const homeSlideData = [
 export const homeProductData = [
   {
     id: 1,
-    image: images.tshirt5,
-    name: "product name",
+    image: images.kid1,
+    name: "product kids",
     price: 12,
+    gender:"kids",
+    all:"all"
   },
   {
     id: 2,
-    image: images.girl2,
-    name: "product name",
+    image: images.girl8,
+    name: "product women",
     price: 22,
+     gender:"women",
+      all:"all"
   },
   {
     id: 3,
-    image: images.suit1,
-    name: "product name",
+    image: images.boy10,
+    name: "product men",
     price: 15,
+     gender:"men",
+      all:"all"
   },
   {
     id: 4,
-    image: images.tshirt1,
-    name: "product name",
+    image: images.boy11,
+    name: "product men",
     price: 12,
+     gender:"men",
+      all:"all"
   },
   {
     id: 5,
-    image: images.tshirt5,
-    name: "product name",
+    image: images.girl7,
+    name: "product women",
     price: 12,
+     gender:"women",
+      all:"all"
   },
   {
     id: 6,
-    image: images.tshirt3,
-    name: "product name",
+    image: images.kid2,
+    name: "product kid",
     price: 32,
+     gender:"kids",
+      all:"all"
   },
   {
     id: 7,
-    image: images.suit4,
-    name: "product name",
+    image: images.kid3,
+    name: "product kids",
     price: 23,
+     gender:"kid",
+      all:"all"
   },
   {
     id: 8,
-    image: images.tshirt7,
-    name: "product name",
+    image: images.boy15,
+    name: "product men",
     price: 12,
+     gender:"men",
+      all:"all"
   },
   {
     id: 9,
-    image: images.suit2,
-    name: "product name",
+    image: images.girl3,
+    name: "product women",
     price: 23,
+     gender:"women",
+      all:"all"
   },
   {
     id: 10,
-    image: images.tshirt3,
-    name: "product name",
+    image: images.kid5,
+    name: "product kids",
     price: 23,
+     gender:"kids",
+      all:"all"
+  },
+];
+/*** home product data ***/
+export const NewProduct = [
+  {
+    id: 1,
+    image: images.kid2,
+    name: "product kids",
+    price: 12,
+    gender:"kids",
+    all:"all"
+  },
+  {
+    id: 2,
+    image: images.girl9,
+    name: "product women",
+    price: 22,
+     gender:"women",
+      all:"all"
+  },
+  {
+    id: 3,
+    image: images.boy11,
+    name: "product men",
+    price: 15,
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 4,
+    image: images.boy1,
+    name: "product men",
+    price: 12,
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 5,
+    image: images.girl6,
+    name: "product women",
+    price: 12,
+     gender:"women",
+      all:"all"
+  },
+  {
+    id: 6,
+    image: images.kid5,
+    name: "product kid",
+    price: 32,
+     gender:"kids",
+      all:"all"
+  },
+  {
+    id: 7,
+    image: images.kid4,
+    name: "product kids",
+    price: 23,
+     gender:"kid",
+      all:"all"
+  },
+  {
+    id: 8,
+    image: images.boy13,
+    name: "product men",
+    price: 12,
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 9,
+    image: images.girl5,
+    name: "product women",
+    price: 23,
+     gender:"women",
+      all:"all"
+  },
+  {
+    id: 10,
+    image: images.kid7,
+    name: "product kids",
+    price: 23,
+     gender:"kids",
+      all:"all"
   },
 ];
 

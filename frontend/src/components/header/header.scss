@@ -42,25 +42,26 @@ header {
       margin-right: 5.5rem;
       gap: 4rem;
       color: var(--main-white);
-      .search{
+      .search {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         background-color: var(--main-white);
         padding: 0 0.5rem;
         border-radius: 6px;
-        .search-icon{
+        .search-icon {
           color: var(--header-backGround);
         }
-        input{
+        input {
           border: none;
           padding: 0.5rem;
         }
-        
       }
-      .cart{
+      .cart {
         position: relative;
-        .cart-item{
+        cursor: pointer;
+        .cart-item {
+          position: relative;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -71,7 +72,31 @@ header {
           height: 20px;
           border-radius: 50%;
           background-color: var(--main-red);
-          color: var(--main-white);
+          p{
+          color: var(--main-white);}
+        }
+        .cartModel {
+          position: absolute;
+          padding: 20px;
+          right: 0;
+          top: 40px;
+          width: 400px;
+          background-color: lightgray;
+          .items{
+            .item{
+              display: flex;
+              align-items: center;
+              color: black;
+              gap: 1rem;
+              img{
+                width: 50px;
+                height: 60px;
+              }
+            }
+          }
+        }
+        p{
+          color: black;
         }
       }
     }

@@ -1,4 +1,4 @@
-import images from "../../assets";
+import { images } from "../../assets/images";
 import ProductFeatures from "../../features/ProductFeatures";
 import "./about.scss"
 const About = () => {
