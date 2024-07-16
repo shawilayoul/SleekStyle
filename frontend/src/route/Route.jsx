@@ -5,6 +5,8 @@ import Shop from '../pages/shop/Shop'
 import About from '../pages/about/About'
 import Contact from '../pages/contact/Contact'
 import Blog from '../pages/blog/Blog'
+import SucessURl from '../components/SucessURl'
+import Cancel from '../components/Cancel'
 
 const router = createBrowserRouter([
     {
@@ -30,8 +32,19 @@ const router = createBrowserRouter([
                 path:"/contact",
                 element:<Contact/>
             },
+           
         ]
-    }
+    },
+    
+        {
+            path:"/success",
+            element:<SucessURl/>
+        },
+        {
+            path:"/cancel",
+            element:<Cancel/>
+        },
+    
 ])
 
 export default router

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import "./Shop.scss";
 import ChiffreSection from "../../features/ChiffreSection";
 
@@ -11,13 +12,12 @@ import { shopSlideDAta } from "../../constant/data";
 import ProductFeatures from "../../features/ProductFeatures";
 import Products from "../../features/Prodcuts.jsx";
 import NewProducts from "../../features/NewProducts.jsx";
-import { useContext} from "react";
+import { useContext, useState} from "react";
 import { ProductsContext } from "../../context/ProductContext.jsx";
 
 const Shop = () => {
-
+   const [priceRate ,setPriceRate] = useState(0)
   const { setFilterValue ,filterValue } = useContext(ProductsContext);
- console.log(Number(filterValue))
   return (
     <div className="shop-container">
       <section className="shop-top">
@@ -70,8 +70,9 @@ const Shop = () => {
             </div>
           </div>
           <div className="price-filter">
-            <h3> Filter by Price {filterValue}</h3>
-            <input type="range" step={10} value={filterValue} onChange={(e)=>setFilterValue(e.target.value)}/>
+            <h3> Filter by Price {priceRate}</h3>
+        
+            <input type="range" step={10} value={filterValue} onChange={(e)=>(setFilterValue(e.target.value) || setPriceRate(e.target.value))}/>
           </div>
         </div>
         <div className="shop-right">

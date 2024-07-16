@@ -19,7 +19,7 @@ const ProductContextProvider = ({ children }) => {
   const filterProducts = filterValue
     ? homeProductData.filter(
         (product) =>
-          product.gender === filterValue || product.all === filterValue ||product.price === filterValue.toString()
+          product.gender === filterValue || product.all === filterValue ||product.price === filterValue
       )
     : homeProductData;
   //filtering  new products by gender

@@ -50,7 +50,7 @@ export const homeProductData = [
     id: 1,
     image: images.kid1,
     name: "product kids",
-    price: "10",
+    price:"10",
     gender:"kids",
     all:"all"
   },
@@ -66,7 +66,7 @@ export const homeProductData = [
     id: 3,
     image: images.boy10,
     name: "product men",
-    price:"30",
+    price:"20",
      gender:"men",
       all:"all"
   },
@@ -74,7 +74,7 @@ export const homeProductData = [
     id: 4,
     image: images.boy11,
     name: "product men",
-    price: "90",
+    price: "10",
      gender:"men",
       all:"all"
   },
@@ -90,7 +90,7 @@ export const homeProductData = [
     id: 6,
     image: images.kid2,
     name: "product kid",
-    price: "40",
+    price: "50",
      gender:"kids",
       all:"all"
   },
@@ -114,7 +114,7 @@ export const homeProductData = [
     id: 9,
     image: images.girl3,
     name: "product women",
-    price: "200",
+    price: "100",
      gender:"women",
       all:"all"
   },
@@ -124,6 +124,46 @@ export const homeProductData = [
     name: "product kids",
     price: "70",
      gender:"kids",
+      all:"all"
+  },
+  {
+    id: 11,
+    image: images.kid2,
+    name: "product kids",
+    price: "40",
+    gender:"kids",
+    all:"all"
+  },
+  {
+    id: 12,
+    image: images.girl9,
+    name: "product women",
+    price: "80",
+     gender:"women",
+      all:"all"
+  },
+  {
+    id: 13,
+    image: images.boy11,
+    name: "product men",
+    price: "70",
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 14,
+    image: images.boy1,
+    name: "product men",
+    price: "70",
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 15,
+    image: images.girl6,
+    name: "product women",
+    price: "100",
+     gender:"women",
       all:"all"
   },
 ];
@@ -207,6 +247,46 @@ export const NewProduct = [
     name: "product kids",
     price: 23,
      gender:"kids",
+      all:"all"
+  },
+  {
+    id: 11,
+    image: images.kid1,
+    name: "product kids",
+    price: "10",
+    gender:"kids",
+    all:"all"
+  },
+  {
+    id: 12,
+    image: images.girl8,
+    name: "product women",
+    price: "20",
+     gender:"women",
+      all:"all"
+  },
+  {
+    id: 13,
+    image: images.boy10,
+    name: "product men",
+    price:"30",
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 14,
+    image: images.boy11,
+    name: "product men",
+    price: "90",
+     gender:"men",
+      all:"all"
+  },
+  {
+    id: 15,
+    image: images.girl7,
+    name: "product women",
+    price: "70",
+     gender:"women",
       all:"all"
   },
 ];

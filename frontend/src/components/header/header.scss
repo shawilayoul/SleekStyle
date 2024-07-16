@@ -41,7 +41,9 @@ header {
       justify-content: space-around;
       margin-right: 5.5rem;
       gap: 4rem;
-      color: var(--main-white);
+      .icons{
+        color: white;
+      }
       .search {
         display: flex;
         align-items: center;
@@ -80,7 +82,7 @@ header {
           padding: 20px;
           right: 0;
           top: 40px;
-          width: 450px;
+          width: 500px;
           background-color: white;
           box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
           .items{
@@ -93,11 +95,154 @@ header {
                 width: 50px;
                 height: 60px;
               }
+              button{
+                background-color: var(--header-backGround);
+                color: white;
+                padding: 6px 8px;
+                cursor: pointer;
+              }
+              .btnDelete{
+                color: white;
+                background-color: orangered;
+                padding: 6px 8px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+              }
             }
           }
+          button{
+            background-color: var(--header-backGround);
+            color: white;
+            padding: 6px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+          }
+          .total{
+            color:orangered;
+            font-weight: bolder;
+          }
         }
-        p{
-          color: black;
+       
+      }
+    }
+  }
+}
+
+//reponsive mobile
+@media only screen and (max-width: 600px) {
+  header {
+
+    nav {
+   
+      .logo {
+        h2 {
+          font-size: 25px;
+          .link {
+            color: var(--main-white);
+            text-decoration: none;
+          }
+        }
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        list-style: none;
+        li {
+          display: none;
+          .link {
+            color: var(--main-white);
+            cursor: pointer;
+            text-decoration: none;
+          }
+        }
+      }
+      .right {
+        gap: 2.5rem;
+        color: var(--main-white);
+        .search {
+          display:flex;
+          align-items: center;
+          gap: 0.5rem;
+          background-color: var(--header-backGround);
+          padding: 0 0.5rem;
+          border-radius: 6px;
+          .search-icon {
+            color: white;
+            cursor: pointer;
+          }
+          input {
+            display:none;
+            border: none;
+            padding: 0.5rem;
+          }
+        }
+        .cart {
+          position: relative;
+          cursor: pointer;
+          .cart-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 17px;
+            left: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--main-red);
+            p{
+            color: var(--main-white);}
+          }
+          .cartModel {
+            position: absolute;
+            padding: 20px;
+            right: 0;
+            top: 40px;
+            width: 500px;
+            background-color: white;
+            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+            .items{
+              .item{
+                display: flex;
+                align-items: center;
+                color: black;
+                gap: 1rem;
+                img{
+                  width: 50px;
+                  height: 60px;
+                }
+                button{
+                  background-color: var(--header-backGround);
+                  color: white;
+                  padding: 6px 8px;
+                  cursor: pointer;
+                }
+                .btnDelete{
+                  color: white;
+                  background-color: orangered;
+                  padding: 6px 8px;
+                  border: none;
+                  border-radius: 6px;
+                  cursor: pointer;
+                }
+              }
+            }
+            button{
+              background-color: var(--header-backGround);
+              color: white;
+              padding: 6px 8px;
+              border-radius: 6px;
+              cursor: pointer;
+            }
+            .total{
+              color:orangered;
+              font-weight: bolder;
+            }
+          }
+         
         }
       }
     }

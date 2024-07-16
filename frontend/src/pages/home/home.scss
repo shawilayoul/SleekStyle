@@ -2,7 +2,7 @@
   width: 95%;
   margin: 0 auto;
   ///homs slide sccs stle
-  .title{
+  .title {
     text-align: center;
     font-size: 30px;
     text-transform: capitalize;
@@ -30,10 +30,10 @@
           margin-bottom: 1rem;
           text-transform: capitalize;
         }
-        .shop-btn{
+        .shop-btn {
           display: flex;
           gap: 10rem;
-          button{
+          button {
             cursor: pointer;
             width: 8rem;
             color: var(--main-white);
@@ -41,9 +41,44 @@
             padding: 0.5rem;
           }
         }
-     
       }
     }
   }
- 
+}
+
+// reponive mobile
+@media only screen and (max-width: 600px) {
+  .home-container {
+    ///homs slide sccs stle
+    .title {
+      text-align: center;
+      font-size: 20px;
+      margin: 1rem;
+    }
+    .home-slider {
+  
+      height: 60vh;
+    
+      .slider {
+      
+        .middle {
+        
+          h2 {
+            font-size: 25px;
+            margin-bottom: 0.5rem;
+          }
+          .shop-btn {
+  
+            button {
+              width: 6rem;
+              padding: 0.5rem;
+            }
+          }
+        }
+        .right {
+          display: none;
+        }
+      }
+    }
+  }
 }
