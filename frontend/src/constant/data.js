@@ -49,8 +49,8 @@ export const homeProductData = [
   {
     id: 1,
     image: images.kid1,
-    name: "product kids",
-    price:"10",
+    name: " kids",
+    price:10,
     gender:"kids",
     all:"all"
   },
@@ -58,7 +58,7 @@ export const homeProductData = [
     id: 2,
     image: images.girl8,
     name: "product women",
-    price: "20",
+    price: 10,
      gender:"women",
       all:"all"
   },

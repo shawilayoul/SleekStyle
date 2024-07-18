@@ -1,13 +1,18 @@
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
-//import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-//import axios from 'axios';
-import { loadStripe } from "@stripe/stripe-js";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "axios";
+//import { loadStripe } from "@stripe/stripe-js";
+
+/*const stripePromise = loadStripe(
+  "pk_test_51PcwcKHJQxQ42hCcM0rwQ4qHQ08ilzH3sQU1olBUcjBTLz5kGajoMBXprfGHP98L6PS6kmvyAK1Rb7WuOplqjQwN00gjJSQP1S"
+);*/
 const Header = () => {
   const [cartModel, setCartModel] = useState(false);
+  const navigate = useNavigate() 
   const {
     productsInCart,
     getTotalCost,
@@ -15,76 +20,60 @@ const Header = () => {
     addOneToCart,
     removerOneFromCart,
   } = useContext(ProductsContext);
-  // make the ayment method
-
-  // components/CheckoutForm.js
-/*
-  const stripe = useStripe();
-  const elements = useElements();
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-
-    try {
-      const { data: clientSecret } = await axios.post('http://localhost:5000/create-payment-intent', {
-        amount: 2000// Amount in cents, e.g. $20
-      });
-
-      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: 'John Doe',
-          },
-        },
-      });
-
-      if (error) {
-        setError(`Payment failed: ${error.message}`);
-      } else if (paymentIntent.status === 'succeeded') {
-        setSuccess(true);
-      }
-    } catch (error) {
-      setError(`Payment failed: ${error.message}`);
-    }
-  };
-*/
-  const makepayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51PcwcKHJQxQ42hCcM0rwQ4qHQ08ilzH3sQU1olBUcjBTLz5kGajoMBXprfGHP98L6PS6kmvyAK1Rb7WuOplqjQwN00gjJSQP1S"
-    );
-    const body = {
-      products: productsInCart,
-    };
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const response = await fetch("http://localhost:5000/create-checkout-session", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
-    const session = await response.json();
-    const result = stripe.redirectToCheckout({
-      sessionId:session.id
-    })
-    if(result.error){
-      console.log(result.error)
-    }
-  };
-  // get the total qauntity
-  const totatlQauntity = productsInCart.reduce(
+  console.log(getTotalCost())
+   // get the total qauntity
+   const totatlQauntity = productsInCart.reduce(
     (sum, acc) => sum + acc.qauntity,
     0
   );
+  // making stripe payment using checkout method
+  /* const handelCheckout = async () => {
+     const response = await axios
+      .post("http://localhost:3000/create-checkout-session", {
+        productsInCart,
+      })
+        if (response.data.url) {
+          window.location.href = response.data?.url;
+        } else{
+          console.log("errror ")
+        }
+     
+     
+  };*/
+  // make the ayment method
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+      billing_details: {
+        name: "Jenny Rosen",
+        email: "shawil@gmail.com",
+        phone: "07 8237 11 77",
+      },
+    });
+
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(paymentMethod);
+      // Send the paymentMethod.id to your backend for processing
+      const response = await axios.post("http://localhost:3000/charge", {
+        amount: getTotalCost(),
+        paymentMethodId: paymentMethod.id,
+      });
+      if (response.data.success) {
+        console.log("payement success");
+        navigate('/checkout-success')
+      }
+    }
+  };
+
+ 
 
   const menu = [
     {
@@ -169,7 +158,6 @@ const Header = () => {
                         );
                       }
                     )}
-                 
                   </div>
                 ) : (
                   <p style={{ color: "red" }}>
@@ -178,7 +166,10 @@ const Header = () => {
                 )}
 
                 <p className="total">Total:{getTotalCost()}</p>
-                <button onClick={()=>makepayment()}>Buy Now</button>
+                <form onSubmit={handleSubmit}>
+                  <CardElement/>
+                  <button type="submit">checkout</button>
+                </form>
               </div>
             )}
           </div>
@@ -187,5 +178,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;
