@@ -9,6 +9,7 @@
   }
   .shop-top {
     display: flex;
+    gap: 2rem;
     .shop-left {
       display: flex;
       flex-direction: column;
@@ -88,14 +89,14 @@
       .shop-slider {
         display: flex;
         align-items: center;
-        height: 60vh;
+        height: 70vh;
         background-color: var(--home-background);
         .slider {
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 1rem;
-          .right {
+          .middle {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -120,4 +121,92 @@
     }
   }
  
+}
+
+//reponsive mobile
+@media only screen and (max-width: 600px) {
+  .shop-container {
+    .title{
+      font-size: 22px;
+      margin: 1rem;
+    }
+    .shop-top {
+     flex-direction: column;
+      .shop-left {
+        gap: 1rem;
+        width: 100%;
+        margin-right: 0rem;
+        h3{
+          font-size: 22px;
+        text-align: center;
+        margin-bottom: 1rem;
+        }
+        .select-section {
+          .select-item {
+            select {
+              padding: 0.5rem;
+              width: 11rem;
+            }
+          }
+        }
+        .color {
+          .color-items {
+            button {
+              padding: 1rem 0.5rem;
+              border-radius: 5px;
+              height: 2rem;
+              cursor: pointer;
+            }
+            
+          }
+          
+        }
+        .price-filter{
+          h3{
+            font-size: 20px;
+            margin-bottom: 0.5rem;
+          }
+          input{
+            width: 90%
+          }
+        }
+      }
+      .shop-right {
+        width: 100%;
+        .shop-slider {
+    
+          height: 50vh;
+          .slider {
+            .left{
+              img{
+                width:200px !important;
+              }
+            }
+            .middle {
+         
+              h2 {
+                font-size: 25px;
+                text-transform:capitalize;
+              }
+              button {
+                border-radius: 5px;
+                width: 7rem;
+                padding: 0.5rem;
+            
+              }
+            }
+
+            .right {
+              img{
+                display: none;
+              }
+            }
+          }
+        }
+        //product section scss style
+        
+      }
+    }
+   
+  }
 }

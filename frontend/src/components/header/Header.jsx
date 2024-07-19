@@ -1,4 +1,5 @@
 import "./header.scss";
+import { MdDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { useContext, useState } from "react";
@@ -12,7 +13,8 @@ import axios from "axios";
 );*/
 const Header = () => {
   const [cartModel, setCartModel] = useState(false);
-  const navigate = useNavigate() 
+  const [checkOutModel, setCheckoutModel] = useState(false);
+  const navigate = useNavigate();
   const {
     productsInCart,
     getTotalCost,
@@ -20,9 +22,9 @@ const Header = () => {
     addOneToCart,
     removerOneFromCart,
   } = useContext(ProductsContext);
-  console.log(getTotalCost())
-   // get the total qauntity
-   const totatlQauntity = productsInCart.reduce(
+ 
+  // get the total qauntity
+  const totatlQauntity = productsInCart.reduce(
     (sum, acc) => sum + acc.qauntity,
     0
   );
@@ -62,18 +64,16 @@ const Header = () => {
     } else {
       console.log(paymentMethod);
       // Send the paymentMethod.id to your backend for processing
-      const response = await axios.post("http://localhost:3000/charge", {
-        amount: getTotalCost(),
+      const response = await axios.post("http://localhost:8000/create-checkout/", {
+        amount: getTotalCost() * 1000,
         paymentMethodId: paymentMethod.id,
       });
       if (response.data.success) {
         console.log("payement success");
-        navigate('/checkout-success')
+        navigate("/checkout-success");
       }
     }
   };
-
- 
 
   const menu = [
     {
@@ -140,20 +140,24 @@ const Header = () => {
                       ({ id, name, price, image, qauntity }) => {
                         return (
                           <div className="item" key={id}>
-                            <img src={image} alt="" />
-                            <h4>{name}</h4>
-                            <p>$ {price}</p>
-                            <p>qauntity {qauntity}</p>
-                            <button onClick={() => addOneToCart(id)}>+</button>
-                            <button onClick={() => removerOneFromCart(id)}>
-                              -
-                            </button>
-                            <button
-                              className="btnDelete"
-                              onClick={() => deleteFromCart(id)}
-                            >
-                              Delete
-                            </button>
+                            <div className="item1 ">
+                              <img src={image} alt="" />
+                              <h4>{name}</h4>
+                              <p>${price}</p>
+                            </div>
+                            <div className="item2">
+                              <button onClick={() => addOneToCart(id)}>
+                                +
+                              </button>
+                              <p>{qauntity}</p> 
+                              <button onClick={() => removerOneFromCart(id)}>
+                                -
+                              </button>
+                              <MdDelete
+                                className="btnDelete"
+                                onClick={() => deleteFromCart(id)}
+                              />
+                            </div>
                           </div>
                         );
                       }
@@ -166,11 +170,31 @@ const Header = () => {
                 )}
 
                 <p className="total">Total:{getTotalCost()}</p>
-                <form onSubmit={handleSubmit}>
-                  <CardElement/>
-                  <button type="submit">checkout</button>
-                </form>
+                <button
+                  onClick={() =>
+                    setCheckoutModel(!checkOutModel) || setCartModel(!cartModel)
+                  }
+                >
+                  CheckOut
+                </button>
               </div>
+            )}
+            {checkOutModel && (
+              <form onSubmit={handleSubmit} className="ChackoutForm">
+                <p>E-mail</p>
+                <input type="text" placeholder="Enter your Email" />
+                <p>Cart Informations</p>
+                <CardElement />
+                <p>Conutry or region</p>
+                <select name="" id="">
+                  <option value="">United States</option>
+                </select>
+                <div>
+                  <input type="text" placeholder="Postal code" />
+                </div>
+                <button className="btCancell" onClick={()=>setCheckoutModel(!checkOutModel)}>Cancell</button>
+                <button type="submit">Pay Now</button>
+              </form>
             )}
           </div>
         </div>

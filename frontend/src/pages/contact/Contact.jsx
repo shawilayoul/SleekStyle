@@ -75,6 +75,7 @@ const Contact = () => {
           height="450"
           allowfullscreen=""
           loading="lazy"
+          className="ifram"
         ></iframe>
       </div>
     </div>
