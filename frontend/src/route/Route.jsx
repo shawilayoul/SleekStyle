@@ -7,7 +7,15 @@ import Contact from '../pages/contact/Contact'
 import Blog from '../pages/blog/Blog'
 import SucessURl from '../components/SucessURl'
 import Cancel from '../components/Cancel'
-
+import Dasbbord from '../adminDashbord/Dashbord'
+import Prodducts from '../adminDashbord/Products'
+import Expenses from '../adminDashbord/Expenses'
+import NavBar from '../adminDashbord/NavBar'
+import Users from '../adminDashbord/Users'
+import SidBar from '../adminDashbord/SidBar'
+import Inventroy from '../adminDashbord/Inventroy'
+import Settings from '../adminDashbord/Settings'
+import AppLayOUtAdmin from '../components/AppLayOUtAdmin'
 const router = createBrowserRouter([
     {
         path:"/",
@@ -35,7 +43,43 @@ const router = createBrowserRouter([
            
         ]
     },
-    
+    {
+        path:"/dashboard",
+        element: <AppLayOUtAdmin/>,
+        children:[
+            {
+                index:true,element:<Dasbbord/>
+            },
+            {
+                path:"products",
+                element:<Prodducts/>
+            },
+            {
+                path:"expenses",
+                element:<Expenses/>
+            },
+            {
+                path:"navBar",
+                element:<NavBar/>
+            },
+            {
+                path:"users",
+                element:<Users/>
+            },
+            {
+                path:"sidBar",
+                element:<SidBar/>
+            },
+            {
+                path:"inventory",
+                element:<Inventroy/>
+            },
+            {
+                path:"settings",
+                element:<Settings/>
+            },
+        ]
+    },
         {
             path:"/checkout-success",
             element:<SucessURl/>
