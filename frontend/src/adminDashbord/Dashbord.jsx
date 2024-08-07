@@ -1,8 +1,33 @@
-
+import Products from "./components/Products";
+import CustomerExpenses from "./components/CustomerExpenses";
+import SalleSummary from "./components/SalleSummary";
+import PurchaseSummary from "./components/PurchaseSummary";
+import ExpenseSummary from "./components/ExpenseSummary";
+import SallesDiscount from "./components/SallesDiscount";
+import PenddingOrders from "./components/PenddingOrders";
 const Dashbord = () => {
   return (
-    <div>Dashbord</div>
-  )
-}
+    <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+      {/*products*/}
+      <Products />
+      {/*sale summery*/}
+      <SalleSummary />
 
-export default Dashbord
+      {/*Purches summmary*/}
+      <PurchaseSummary />
+      {/*Expenses Summary*/}
+      <ExpenseSummary />
+
+      {/*customer and expenese*/}
+
+      <CustomerExpenses />
+
+      {/*Bues& Pendding orders*/}
+    <PenddingOrders/>
+      {/*Salles & Discount*/}
+     <SallesDiscount/>
+    </main>
+  );
+};
+
+export default Dashbord;

@@ -2,16 +2,17 @@ import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
 import { FaRegMoon ,FaRegUser } from "react-icons/fa";
 const NavBar = () => {
   return (
-    <div className="bg-black text-white h-16 w-full">
+    <div className="bg-black text-white h-16 w-[100%]">
       <header>
-        <nav>
+        <nav className="flex items-center justify-between w-[100%]">
           <div className="left">
             <h2>STOCK</h2>
           </div>
-          <div className="middle">
+          <div className="middle ">
             <input
               type="text"
               placeholder="Start type to search for  a product "
+              className="p-1 rounded-lg"
             />
           </div>
           <div className="right">

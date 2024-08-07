@@ -7,10 +7,10 @@ const AppLayOUtAdmin = () => {
     <div>
       <NavBar />
       <div className="flex bg-white ">
-        <div className="  border-2 h-[100vh] w-[30%]">
+        <div className=" w-[20%]">
           <SidBar />
         </div>
-        <div className=" w-full h-[100vh] p-2">
+        <div className=" w-full p-2 border-l-2">
           {" "}
           <Outlet />
         </div>

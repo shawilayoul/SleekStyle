@@ -7,7 +7,7 @@ import { SiExpensify } from "react-icons/si";
 import { Link } from "react-router-dom";
 const SidBar = () => {
   return (
-    <div className="flex flex-col gap-5 w-[80%] m-auto p-2 mt-6">
+    <div className="fixed flex flex-col gap-5 w-[80%] m-auto p-2 mt-6">
       <Link to="/dashboard" className="flex gap-3 items-center cursor-pointer">
         <RxDashboard /> <h3>Dashboard</h3>
       </Link>
