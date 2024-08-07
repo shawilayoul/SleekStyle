@@ -7,7 +7,7 @@ const Products = () => {
     <div className="row-span-3 xl:row-span-6  shadow-md ">
       <div>
         <h2 className=" border p-2 font-bold bg-blue-100">Popular Products</h2>
-        <div className="products">
+        <div className="products px-4">
           {PopularProductData.map(({ id, image, name, price, sold }) => (
             <div
               key={id}

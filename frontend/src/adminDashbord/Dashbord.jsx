@@ -7,7 +7,7 @@ import SallesDiscount from "./components/SallesDiscount";
 import PenddingOrders from "./components/PenddingOrders";
 const Dashbord = () => {
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+    <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-2">
       {/*products*/}
       <Products />
       {/*sale summery*/}

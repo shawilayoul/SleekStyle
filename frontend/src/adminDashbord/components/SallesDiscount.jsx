@@ -3,7 +3,7 @@ import { FcApprove } from "react-icons/fc";
 
 const SallesDiscount = () => {
   return (
-    <div className="md:row-span-1 xl:row-span-2 shadow-md">
+    <div className="md:row-span-1 xl:row-span-2 shadow-md p-2">
       <div
         className=" border-b-2 p-2 flex
           items-center justify-between bg-blue-100"
