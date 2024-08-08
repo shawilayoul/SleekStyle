@@ -22,18 +22,18 @@ const Products = () => {
         </div>
       </div>
       <div className="bottom">
-        <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 xl:grid-cols-4">
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 xl:grid-cols-5">
           {PopularProductData.map(({ id, image, name, price, sold }) => (
             <div
               key={id}
-              className="shadow-md flex flex-col items-center gap-2"
+              className="shadow-md flex flex-col items-center gap-1 border-2 p-2"
             >
               <img
                 src={image}
                 alt="productImg"
                 className="w-32 bg-gray-400 rounded-md"
               />
-              <p>{name}</p>
+              <p className="font-semibold">{name}</p>
               <p>{price}$</p>
               <p>Stocks {sold}</p>
             </div>
