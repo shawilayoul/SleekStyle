@@ -1,7 +1,7 @@
 import { PopularProductData } from "../constant/data";
 const Users = () => {
   return (
-    <div className="p-2 relative">
+    <div className="p-2 relative w-[40%]">
       <div className="top mb-3">
         <div className="flex justify-between">
           <h2 className="font-semibold mb-5">Users</h2>

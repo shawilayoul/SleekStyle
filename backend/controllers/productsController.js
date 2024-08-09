@@ -1,3 +1,8 @@
+const multer = require("multer");
+// Set up multer for file storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const Product = require("../models/productsModel");
 
 // get all products
@@ -12,24 +17,26 @@ const getAProduct = async (req, res) => {
 
 // create a product
 const createProduct = async (req, res) => {
-  const { name, description, price, image } = req.body;
+  const {productName, image, description, price } = req.body;
+  // Convert buffer to base64 string
+  //const imageBase64 = image.buffer.toString("base64");
 
-  if (!name || !description || !price || !image) {
+ /* if (!productName || !image || !description || !price ) {
     res.status(400).json("All fields are required");
     throw new Error("All fileds are reqyired");
-  }
+  }*/
   try {
     const newProducts = new Product({
-      name,
+      productName,
+      image,
       description,
       price,
-      image,
     });
     await newProducts.save();
     if (newProducts) {
       res.status(201).json(newProducts);
     } else {
-      res.status(400).json("Error while cratingthe product");
+      res.status(400).json("Error while crating the product");
     }
   } catch (error) {
     console.log(error);

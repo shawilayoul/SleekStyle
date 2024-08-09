@@ -1,3 +1,7 @@
+const multer = require("multer");
+// Set up multer for file storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const express = require("express");
 const {
   getAllProducts,
@@ -11,7 +15,7 @@ const router = express.Router();
 
 router.get("/",getAllProducts);
 router.get("/:id",getAProduct);
-router.post("/",createProduct);
+router.post("/",upload.single('image'),createProduct);
 
 router.put("/:id",updateProducts);
 
