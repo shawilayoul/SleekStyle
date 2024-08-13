@@ -2,6 +2,7 @@ import { PopularProductData } from "../../constant/data";
 import { MdOutlineInventory2 } from "react-icons/md";
 
 
+
 const Products = () => {
   return (
     <div className="row-span-3 xl:row-span-6  shadow-md ">

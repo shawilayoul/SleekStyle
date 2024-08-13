@@ -1,36 +1,39 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState,} from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-const CreateProductForm = () => {
+
+// eslint-disable-next-line react/prop-types
+const CreateProductForm = ({setShowModel,shoowModel}) => {
+
   const [productName, setProductName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
-  const {
-    formState: { errors },
-  } = useForm();
+ 
+ 
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("image", image);
     try {
-      await axios.post("http://localhost:8000/api/products", {
-        productName,
-        image,
-        description,
-        price,
-      });
-    
+      await axios.post("http://localhost:8000/uploads", formData);
+
       toast.success("Product has been created successfully");
     } catch (error) {
       console.error("Error Creating Product", error);
-      toast.error("Product creation failed");
     }
-
-  
+    setProductName(""), setImage(null);
+    setDescription("");
+    setPrice("");
+    setShowModel(!shoowModel)
   };
   return (
     <div className="bg-white z-10 p-2 w-[400px] flex flex-col items-center shadow-lg border-2">
@@ -46,37 +49,25 @@ const CreateProductForm = () => {
             className="p-1 border-2 w-full"
             onChange={(e) => setProductName(e.target.value)}
           />
-          {errors.productName && (
-            <span className="text-red-500">This field is required</span>
-          )}
         </div>
         <div>
           <p>Product Image</p>
           <input
             type="file"
-            placeholder="0"
-            name="image"
-            value={image}
             className="p-1 border-2 w-full"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => handleFileChange(e)}
           />
-          {errors.image && (
-            <span className="text-red-500">This field is required</span>
-          )}
         </div>
         <div>
           <p>Description</p>
           <input
             type="text"
-            placeholder="0"
+            placeholder="write the description"
             name="description"
             value={description}
             className="p-1 border-2 w-full"
             onChange={(e) => setDescription(e.target.value)}
           />
-          {errors.description && (
-            <span className="text-red-500">This field is required</span>
-          )}
         </div>
         <div>
           <p>Price</p>
@@ -88,9 +79,6 @@ const CreateProductForm = () => {
             className="p-1 border-2 w-full"
             onChange={(e) => setPrice(e.target.value)}
           />
-          {errors.price && (
-            <span className="text-red-500">This field is required</span>
-          )}
         </div>
         <div className="flex gap-4">
           <button
