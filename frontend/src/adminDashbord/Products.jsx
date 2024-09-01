@@ -3,19 +3,23 @@ import toast from "react-hot-toast";
 import CreateProductForm from "./components/CreateProductForm";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Products = () => {
   const [shoowModel, setShowModel] = useState(false);
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  // get all products
+  const getAllProduct = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/products");
+      const data = await response.data;
+      setData(data);
+    } catch (error) {
+      console.error("Error Creating Product", error);
+    }
+  };
+
   useEffect(() => {
-    const getAllProduct = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/products");
-        const data = await response.data;
-        setData(data);
-      } catch (error) {
-        console.error("Error Creating Product", error);
-      }
-    };
     getAllProduct();
   }, []);
 
@@ -25,11 +29,14 @@ const Products = () => {
     try {
       await axios.delete(`http://localhost:8000/api/products/${_id}`);
       toast.success("Product product has been delted successfully");
+      getAllProduct();
     } catch (error) {
       console.error("Error deleting a product Product", error);
       toast.error("failed to delete a product");
     }
   };
+
+  // handel update
 
   return (
     <div className="p-2 relative">
@@ -69,15 +76,28 @@ const Products = () => {
                   className="text-red-500 text-2xl cursor-pointer"
                   onClick={() => handelDelete(_id)}
                 />
-                <MdEdit className="text-gray-500 text-2xl cursor-pointer" />
+
+                <MdEdit
+                  className="text-gray-500 text-2xl cursor-pointer"
+                  onClick={() => navigate(`update/${_id}`)}
+                />
+
+                {/** update product model */}
+                <div className="absolute z-10 top-24 left-[30%]"></div>
               </div>
             </div>
           ))}
         </ul>
       </div>
-      {/**product model */}
+      {/**create product model */}
       <div className="absolute z-10 top-24 left-[30%]">
-        {shoowModel && <CreateProductForm setShowModel={setShowModel} shoowModel={shoowModel}/>}
+        {shoowModel && (
+          <CreateProductForm
+            setShowModel={setShowModel}
+            shoowModel={shoowModel}
+            getAllProduct={getAllProduct}
+          />
+        )}
       </div>
     </div>
   );

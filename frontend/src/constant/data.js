@@ -333,7 +333,7 @@ export const blogPost = [
     title: "Sample post with featured image",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non...",
+      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est",
   },
   {
     id: 2,
@@ -342,7 +342,7 @@ export const blogPost = [
     title: "Sample post with featured image",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non...",
+      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio",
   },
   {
     id: 3,
@@ -351,7 +351,7 @@ export const blogPost = [
     title: "Sample post with featured image",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non...",
+      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor",
   },
   {
     id: 4,
@@ -360,7 +360,7 @@ export const blogPost = [
     title: "Sample post with featured image",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non...",
+      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non",
   },
 ];
 

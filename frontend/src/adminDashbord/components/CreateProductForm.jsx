@@ -1,9 +1,9 @@
-import { useState,} from "react";
+import {  useState,} from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-const CreateProductForm = ({setShowModel,shoowModel}) => {
+const CreateProductForm = ({setShowModel,shoowModel,getAllProduct}) => {
 
   const [productName, setProductName] = useState("");
   const [image, setImage] = useState(null);
@@ -11,6 +11,8 @@ const CreateProductForm = ({setShowModel,shoowModel}) => {
   const [price, setPrice] = useState("");
 
  
+  
+
  
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -27,6 +29,7 @@ const CreateProductForm = ({setShowModel,shoowModel}) => {
       await axios.post("http://localhost:8000/uploads", formData);
 
       toast.success("Product has been created successfully");
+      getAllProduct()
     } catch (error) {
       console.error("Error Creating Product", error);
     }

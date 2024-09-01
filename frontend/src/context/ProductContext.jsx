@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { homeProductData, NewProduct } from "../constant/data";
 import toast from "react-hot-toast";
+import axios from "axios";
 export const ProductsContext = createContext({
   items: [],
   getQauntity: () => {},
@@ -19,7 +20,9 @@ const ProductContextProvider = ({ children }) => {
   const filterProducts = filterValue
     ? homeProductData.filter(
         (product) =>
-          product.gender === filterValue || product.all === filterValue ||product.price === filterValue
+          product.gender === filterValue ||
+          product.all === filterValue ||
+          product.price === filterValue
       )
     : homeProductData;
   //filtering  new products by gender
@@ -101,7 +104,7 @@ const ProductContextProvider = ({ children }) => {
   const deleteFromCart = (id) => {
     setProductsInCart(productsInCart.filter((product) => product.id !== id));
     toast.success("the item has been deleted from the cart successfully");
-    saveToLocalStorage()
+    saveToLocalStorage();
   };
   //get total price
   const getTotalCost = () => {
@@ -118,6 +121,32 @@ const ProductContextProvider = ({ children }) => {
     localStorage.setItem("products", JSON.stringify(productsInCart));
   };
 
+  //admin dasboard functionalities
+
+  const [productName, setProductName] = useState("");
+  const [image, setImage] = useState(null);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [showUpdateModel, setShowUpdateModel] = useState(false);
+  
+  const updateProduct = async (_id) => {
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("image", image);
+    try {
+      await axios.put(`http://localhost:8000/uploads/${_id}`, formData);
+
+      toast.success("Product has been updated successfully");
+    } catch (error) {
+      console.error("Error updating Product", error);
+    }
+    setProductName(""), setImage(null);
+    setDescription("");
+    setPrice("");
+    setShowUpdateModel(!showUpdateModel);
+  };
   const contextValue = {
     items: productsInCart,
     filterProducts,
@@ -128,7 +157,16 @@ const ProductContextProvider = ({ children }) => {
     productsInCart,
     getTotalCost,
     deleteFromCart,
-    removerOneFromCart
+    removerOneFromCart,
+    updateProduct,
+    setProductName,
+    setDescription,
+    setPrice,
+    setImage,
+    description,
+    price,
+    productName,
+    image
   };
   return (
     <ProductsContext.Provider value={contextValue}>

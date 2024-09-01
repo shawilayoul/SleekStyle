@@ -23,7 +23,6 @@ const Products = () => {
               </div>
               <div className="right flex items-center gap-2">
                 <MdOutlineInventory2 />
-
                 <p>{sold}k sold</p>
               </div>
             </div>

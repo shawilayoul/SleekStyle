@@ -36,11 +36,11 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 //upload image and products to mongodb using uulter
 
 app.post("/uploads", upload.single("image"), (req, res) => {
-  const { productName,image, description, price } = req.body;
+  const { productName, image, description, price } = req.body;
 
   const newImage = new Product({
     productName,
-    image:req.file.path,
+    image: req.file.path,
     description,
     price,
   });
@@ -50,6 +50,38 @@ app.post("/uploads", upload.single("image"), (req, res) => {
       res.status(201).json({ message: "Image uploaded successfully" })
     )
     .catch((err) => res.status(400).json({ error: err.message }));
+});
+
+// updating products
+app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
+  try {
+    const productId = req.params._id;
+    console.log(productId)
+    const updateProduct = {
+      productName: req.body.productName,
+      price: req.body.price,
+      description: req.body.description,
+      image: req.file ? `/uploads/${req.file.filename}` : req.body.image,
+    };
+    console.log(updateProduct)
+
+    const result = await Product.findByIdAndUpdate(productId, updateProduct, {
+      new: true,
+    });
+    console.log(result)
+  
+     if (!result) {
+      return res.status(404).json({ message: "product not found" });
+    }
+
+    res.status(200).json({
+      message: "product has been updated successfully",
+      product: result,
+    });
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Error updating product" });
+  }
 });
 
 app.use("/create-checkout", require("./routes/stripeRoute.js"));
