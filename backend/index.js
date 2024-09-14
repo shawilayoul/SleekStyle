@@ -86,6 +86,7 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
 
 app.use("/create-checkout", require("./routes/stripeRoute.js"));
 app.use("/api/products", require("./routes/productsRoute.js"));
+app.use("/api/auth", require("./routes/authRoute.js"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.listen(port, () => {
