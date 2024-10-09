@@ -1,7 +1,13 @@
 const bycript = require("bcryptjs");
 const User = require("../models/authModel.js");
 const jwt = require("jsonwebtoken");
-const { sendVeryficationEmail } = require("../mailtrap/mail.js");
+const crypto = require("crypto");
+const {
+  sendVeryficationEmail,
+  sendWelcomeEmail,
+  sendresetPasswordEmail,
+  sentResetSuccessEmail,
+} = require("../mailtrap/mail.js");
 
 const signUp = async (req, res) => {
   const { username, email, password } = req.body;
@@ -21,6 +27,7 @@ const signUp = async (req, res) => {
       email,
       password: hashPassword,
       verificationToken,
+      verificationTokenExpiresDate: Date.now() + 24 * 60 * 60 * 1000, //24 hours
     });
     await newUser.save();
     // generting token
@@ -58,30 +65,129 @@ const generateTokenAndSetCookie = (res, userId) => {
   return token;
 };
 
+//verify email
+const verifyEmail = async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    const user = await User.findOne({
+      verificationToken: code,
+      verificationTokenExpiresDate: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalide expired verification token",
+      });
+    }
+    user.isVerified = true;
+    user.verificationToken = undefined;
+    user.verificationTokenExpiresDate = undefined;
+
+    await user.save();
+
+    await sendWelcomeEmail(user.email, user.username);
+    res
+      .status(200)
+      .json({ message: "your email has been verified successfully" });
+  } catch (error) {
+    console.error(`error while verifing the code ${error}`);
+  }
+};
 // sigin
 const signIn = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res
-      .status(400)
-      .json({ success: true, message: "user dose not exist" });
-  }
-  if (user && (await bycript.compare(password, user.password))) {
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: true, message: "user dose not exist" });
+    }
+    const verifiedPassword = await bycript.compare(password, user.password);
+    if (!verifiedPassword) {
+      return res
+        .status(400)
+        .json({ success: true, message: "Invalide password" });
+    }
+
+    generateTokenAndSetCookie(res, user._id);
+
+    user.lastLogin = Date.now();
+    await user.save();
     res.status(200).json({
       success: true,
       message: "user login successfully",
+      user: {
+        ...user._doc,
+        password: undefined,
+      },
     });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json("server error", error);
   }
 };
 
 //user logout
 const logOut = async (req, res) => {
-  res.send("hello from logout");
+  res.clearCookie("token");
+  res.status(200).json("logged out successfully");
 };
 
+//forgot password
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).json("user not found");
+  }
+  const restToken = crypto.randomBytes(20).toString("hex");
+  const resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1hour
+
+  user.resetPasswordToken = restToken;
+  user.resetPasswordExpiresAt = resetPasswordExpiresAt;
+
+  await user.save();
+
+  await sendresetPasswordEmail(
+    user.email,
+    `http://localhost:3000/resetpassword${restToken}`
+  );
+
+  res.status(200).json("password reset link send to your email ");
+};
+// restpassword
+
+const resetPasssword = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const user = await User.findOne({
+    resetPasswordToken: token,
+    resetPasswordExpiresAt: { $gt: Date.now() },
+  });
+  if (!user) {
+    return res.status(400).json("user not found or expire token");
+  }
+
+  const hashPassword = await bycript.hash(password, 10);
+
+  user.password = hashPassword;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpiresAt = undefined;
+  await user.save();
+
+  await sentResetSuccessEmail(user.email);
+
+  res.status(200).json("password has been reset successfully");
+};
 module.exports = {
   signIn,
   signUp,
   logOut,
+  verifyEmail,
+  forgotPassword,
+  resetPasssword,
 };
