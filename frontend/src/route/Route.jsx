@@ -17,6 +17,9 @@ import Inventroy from "../adminDashbord/Inventroy";
 import Settings from "../adminDashbord/Settings";
 import AppLayOUtAdmin from "../components/AppLayOUtAdmin";
 import UpdateProductForm from "../adminDashbord/components/UpdateProductForm";
+import SignInPage from "../components/SignInPage";
+import SignUpPage from "../components/SignUpPage";
+import VerifiyEmail from "../components/VerifiyEmail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +44,18 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUpPage />,
+      },
+      {
+        path: "/signIn",
+        element: <SignInPage/>,
+      },
+      {
+        path: "/verifyEmail",
+        element: <VerifiyEmail/>,
       },
     ],
   },

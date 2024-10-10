@@ -59,6 +59,19 @@ header {
           padding: 0.5rem;
         }
       }
+      .user {
+        position: relative;
+        cursor: pointer;
+        .userModel {
+          position: absolute;
+          padding: 20px;
+          right: 0;
+          top: 40px;
+          width: 500px;
+          background-color: white;
+          box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+      }
       .cart {
         position: relative;
         cursor: pointer;
@@ -110,7 +123,7 @@ header {
                   padding: 5px 6px;
                   cursor: pointer;
                 }
-              
+
                 .btnDelete {
                   color: orangered;
                   font-size: 30px;

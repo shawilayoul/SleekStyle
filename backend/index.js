@@ -10,7 +10,7 @@ const Product = require("./models/productsModel.js");
 const morgan = require("morgan");
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT ||5000;
 //uploading image using multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -47,7 +47,7 @@ const signUp = async (req, res) => {
     });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json("server error", error);
+    res.status(500).json({ message: "Error sending verification email" });
   }
 };
 // generting token
@@ -78,9 +78,10 @@ const verifyEmail = async (req, res) => {
     if (!user) {
       return res.status(400).json({
         success: false,
-        message: "Invalide expired verification token",
+        message: "wrong verification code or expired verification token",
       });
     }
+  
     user.isVerified = true;
     user.verificationToken = undefined;
     user.verificationTokenExpiresDate = undefined;

@@ -5,8 +5,16 @@ const {
   PASSWORD_RESET_SUCCESS_TEMPLATE,
 } = require("./mailTrapTamplate.js");
 
+//helper // Helper function to validate the email format
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 const sendVeryficationEmail = async (email, verificationToken) => {
   const recipient = [{ email }];
+  /*if (!validateEmail(recipient)) {
+    throw new Error("Invalid email address");
+  }*/
   try {
     const response = await client.send({
       from: sender,

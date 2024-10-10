@@ -6,11 +6,7 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
-//import { loadStripe } from "@stripe/stripe-js";
 
-/*const stripePromise = loadStripe(
-  "pk_test_51PcwcKHJQxQ42hCcM0rwQ4qHQ08ilzH3sQU1olBUcjBTLz5kGajoMBXprfGHP98L6PS6kmvyAK1Rb7WuOplqjQwN00gjJSQP1S"
-);*/
 const Header = () => {
   const [cartModel, setCartModel] = useState(false);
   const [checkOutModel, setCheckoutModel] = useState(false);
@@ -22,26 +18,12 @@ const Header = () => {
     addOneToCart,
     removerOneFromCart,
   } = useContext(ProductsContext);
- 
+
   // get the total qauntity
   const totatlQauntity = productsInCart.reduce(
     (sum, acc) => sum + acc.qauntity,
     0
   );
-  // making stripe payment using checkout method
-  /* const handelCheckout = async () => {
-     const response = await axios
-      .post("http://localhost:3000/create-checkout-session", {
-        productsInCart,
-      })
-        if (response.data.url) {
-          window.location.href = response.data?.url;
-        } else{
-          console.log("errror ")
-        }
-     
-     
-  };*/
   // make the ayment method
   const stripe = useStripe();
   const elements = useElements();
@@ -64,10 +46,13 @@ const Header = () => {
     } else {
       console.log(paymentMethod);
       // Send the paymentMethod.id to your backend for processing
-      const response = await axios.post("http://localhost:8000/create-checkout/", {
-        amount: getTotalCost() * 1000,
-        paymentMethodId: paymentMethod.id,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/create-checkout/",
+        {
+          amount: getTotalCost() * 1000,
+          paymentMethodId: paymentMethod.id,
+        }
+      );
       if (response.data.success) {
         console.log("payement success");
         navigate("/checkout-success");
@@ -122,16 +107,15 @@ const Header = () => {
             <input type="text" placeholder="search.........." />
           </div>
           <div className="user">
-            <FaUser className="icons" />
+            <FaUser className="icons" onClick={() => navigate("/signup")} />
           </div>
           <div className="cart">
-            <div className="cart-item">
-              <p>{totatlQauntity}</p>
+            <div onClick={() => setCartModel(!cartModel)}>
+              <div className="cart-item">
+                <p>{totatlQauntity}</p>
+              </div>
+              <FaShoppingCart className="icons" />
             </div>
-            <FaShoppingCart
-              onClick={() => setCartModel(!cartModel)}
-              className="icons"
-            />
             {cartModel && (
               <div className="cartModel">
                 {totatlQauntity > 0 ? (
@@ -149,7 +133,7 @@ const Header = () => {
                               <button onClick={() => addOneToCart(id)}>
                                 +
                               </button>
-                              <p>{qauntity}</p> 
+                              <p>{qauntity}</p>
                               <button onClick={() => removerOneFromCart(id)}>
                                 -
                               </button>
@@ -192,7 +176,12 @@ const Header = () => {
                 <div>
                   <input type="text" placeholder="Postal code" />
                 </div>
-                <button className="btCancell" onClick={()=>setCheckoutModel(!checkOutModel)}>Cancell</button>
+                <button
+                  className="btCancell"
+                  onClick={() => setCheckoutModel(!checkOutModel)}
+                >
+                  Cancell
+                </button>
                 <button type="submit">Pay Now</button>
               </form>
             )}
