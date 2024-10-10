@@ -154,7 +154,7 @@ const forgotPassword = async (req, res) => {
 
   await sendresetPasswordEmail(
     user.email,
-    `http://localhost:3000/resetpassword${restToken}`
+    `http://localhost:5173/resetpassword/${restToken}`
   );
 
   res.status(200).json("password reset link send to your email ");
