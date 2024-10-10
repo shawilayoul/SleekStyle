@@ -1,6 +1,9 @@
 import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
 import { FaRegMoon ,FaRegUser } from "react-icons/fa";
+import useAuthStore from "../store/authStore";
 const NavBar = () => {
+  const { user } = useAuthStore();
+
   return (
     <div className="bg-black text-white h-16 w-[100%]">
       <header>
@@ -25,7 +28,7 @@ const NavBar = () => {
             </div>
             <div className="flex items-center gap-2">
             <FaRegUser />
-            <p>shawil</p>
+            <p>{user && user.username? (<span>Welcome {user.username}</span>):(<span>Welcome guest</span>)}</p>
             </div>
             <div>
               < IoSettingsOutline/>

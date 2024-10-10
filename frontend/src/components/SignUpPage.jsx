@@ -4,8 +4,8 @@ import useAuthStore from "../store/authStore";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { signUp, user, error } = useAuthStore();
-  console.log(user);
+  const { signUp, error } = useAuthStore();
+ 
   const [formData, setFormData] = useState({
     username: "",
     email: "",

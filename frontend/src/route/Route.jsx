@@ -20,6 +20,8 @@ import UpdateProductForm from "../adminDashbord/components/UpdateProductForm";
 import SignInPage from "../components/SignInPage";
 import SignUpPage from "../components/SignUpPage";
 import VerifiyEmail from "../components/VerifiyEmail";
+import ForgotPassword from "../components/ForgotPassword";
+import ResetPassword from "../components/ResetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,11 +53,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/signIn",
-        element: <SignInPage/>,
+        element: <SignInPage />,
       },
       {
         path: "/verifyEmail",
-        element: <VerifiyEmail/>,
+        element: <VerifiyEmail />,
+      },
+      {
+        path: "/forgotPassword",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/resetpassword/:token",
+        element: <ResetPassword />,
       },
     ],
   },
@@ -70,7 +80,6 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Prodducts />,
-      
       },
       {
         path: "expenses",
@@ -100,7 +109,6 @@ const router = createBrowserRouter([
         path: "products/update/:_id",
         element: <UpdateProductForm />,
       },
-     
     ],
   },
 

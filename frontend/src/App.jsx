@@ -8,7 +8,7 @@ const App = () => {
     "pk_test_51PcwcKHJQxQ42hCcM0rwQ4qHQ08ilzH3sQU1olBUcjBTLz5kGajoMBXprfGHP98L6PS6kmvyAK1Rb7WuOplqjQwN00gjJSQP1S"
   );
   return (
-    <div>
+    <div className="bg-gray-100">
       <Elements stripe={stripePromise}>
         <RouterProvider router={router} />
         <Toaster/>

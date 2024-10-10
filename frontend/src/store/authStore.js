@@ -26,12 +26,54 @@ const useAuthStore = create((set) => ({
 
   verifyEmail: async (code) => {
     try {
-      const response = await axios.post(`${apiUrl}/verifyEmail`,{code});
+      const response = await axios.post(`${apiUrl}/verifyEmail`, { code });
       set({ user: response.data.user, isloading: false });
-      return response.data
+      return response.data;
     } catch (error) {
       set({
         error: error.response.data.message || "error verifing the code",
+        isloading: false,
+      });
+      throw error;
+    }
+  },
+  signIn: async (email, password) => {
+    set({ user: null, isloading: true });
+    try {
+      const response = await axios.post(`${apiUrl}/login`, { email, password });
+      set({ user: response.data.user, error: null, isloading: false });
+    } catch (error) {
+      set({
+        error: error.response.data.message || "error signing in",
+        isloading: false,
+      });
+      throw error;
+    }
+  },
+  forgotPassword: async (email) => {
+    set({ user: null, isloading: true });
+    try {
+      const response = await axios.post(`${apiUrl}/forgotPassword`, { email });
+      set({ user: response.data.user, error: null, isloading: false });
+    } catch (error) {
+      set({
+        error: error.response.data.message || "wrong email",
+        isloading: false,
+      });
+      throw error;
+    }
+  },
+
+  resetPassword: async (token, password) => {
+    set({ user: null, isloading: true });
+    try {
+      const response = await axios.post(`${apiUrl}/resetPasssword/${token}`, {
+        password,
+      });
+      set({ user: response.data.user, error: null, isloading: false });
+    } catch (error) {
+      set({
+        error: error.response.data.message || "Error resetting the password",
         isloading: false,
       });
       throw error;

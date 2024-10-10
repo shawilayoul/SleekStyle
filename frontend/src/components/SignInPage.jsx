@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
 
 const SignInPage = () => {
+  const { signIn, error } = useAuthStore();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,9 +16,15 @@ const SignInPage = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await signIn(formData.email, formData.password);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      throw new Error(error);
+    }
   };
 
   return (
@@ -59,8 +68,12 @@ const SignInPage = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
             />
+            <div onClick={() => navigate("/forgotPassword")}>
+              <p className="w-full  text-blue-600 cursor-pointer">
+                forgot password
+              </p>
+            </div>
           </div>
-
           {/* Submit Button */}
           <div>
             <button
@@ -71,6 +84,9 @@ const SignInPage = () => {
             </button>
           </div>
         </form>
+        <div>
+          {error && <p className="text-center text-red-500">{error}</p>}
+        </div>
         <div onClick={() => navigate("/signup")}>
           <p className="w-full py-2  text-blue-600 cursor-pointer">
             Do not have an account create one

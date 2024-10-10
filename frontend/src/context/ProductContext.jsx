@@ -13,9 +13,11 @@ export const ProductsContext = createContext({
 
 // eslint-disable-next-line react/prop-types
 const ProductContextProvider = ({ children }) => {
+  
   const [productsInCart, setProductsInCart] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [filterNewProductValue, setFilterNewProductValue] = useState("");
+
   //filtering products by gender
   const filterProducts = filterValue
     ? homeProductData.filter(
